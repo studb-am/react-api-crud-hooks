@@ -4,7 +4,7 @@
 In order to use this library in the best way, it's essential to create a backend in order to export on specific url paths the needed REST API, that can be easily called and used by the application of this library hooks.
 
 ## Table of contents
-* [The Crud Provider](#crud-provider)
+* [The Crud Provider](#the-crud-provider)
 * [The Crud Context](#crud-context)
 * [The Hook functions](#hook)
     * [useAuthenticate](#authenticate)
@@ -13,7 +13,7 @@ In order to use this library in the best way, it's essential to create a backend
     * [useDelete](#delete)
     * [useInsert](#insert)
 
-## <a href="#crud-provider" style="pointer-events: none">The Crud Provider</a>
+## The Crud Provider
 This is the component that enables a Context within all the children components. In order to use the provider, you can apply the following boilerplate script:
 
 ```

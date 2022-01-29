@@ -1,6 +1,6 @@
 {
   "name": "react-api-crud-hooks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": ["react", "crud", "api","rest"],
   "private": false,
   "main": "dist/index.js",
