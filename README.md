@@ -5,13 +5,13 @@ In order to use this library in the best way, it's essential to create a backend
 
 ## Table of contents
 * [The Crud Provider](#the-crud-provider)
-* [The Crud Context](#crud-context)
-* [The Hook functions](#hook)
-    * [useAuthenticate](#authenticate)
-    * [useSelect](#select)
-    * [useUpdate](#update)
-    * [useDelete](#delete)
-    * [useInsert](#insert)
+* [The Crud Context](#the-crud-context)
+* [The Hook functions](#the-hook-functions)
+    * [useAuthenticate](#useAuthenticate)
+    * [useSelect](#useSelect)
+    * [useUpdate](#useUpdate)
+    * [useDelete](#useDelete)
+    * [useInsert](#useInsert)
 
 ## The Crud Provider
 This is the component that enables a Context within all the children components. In order to use the provider, you can apply the following boilerplate script:
@@ -33,7 +33,7 @@ Crud Provider needs to be passed the following properties:
 * **enablesToken**, this is a boolean that states if the login by token needs to be enabled or not
 * **tokenExpiresIn**, it states the token validity to be expressed in milliseconds and as a number, otherwise the developer will get an error. In order to correctly use this property, please keep in account to set enablesToke as true.
 
-## <a href="#crud-context" style="pointer-events: none">The Crud Context</a>
+## The Crud Context
 An important concept that is created under the hood is the Crud Context. This is the responsible of keeping the needed information related to the user that authenticates and provide the frontend with easy to use functions, such as login and logout. The Crud Context returns an object that contains in this release:
 
 * **userId**, it's the ID of the user that is retrieved from the backend part,
@@ -46,10 +46,10 @@ An important concept that is created under the hood is the Crud Context. This is
     * *keepDataOnStorage*, this is a boolean that will ask the Crud to keep information in memory for the current user or not
 * **logout**, it's the function that logs out the user and remove all his information from the localStorage, if memorized
 
-## <a href="#hook" style="pointer-events: none">The hook functions</a>
+## The hook functions
 In this section we are going to describe all the hook available in the package. Please, keep in account that, in order to correctly use this hooks, it's important that the backend rest api has been set correctly.
 
-### <a href="#authenticate" style="pointer-events: none">useAuthenticate</a>
+### useAuthenticate
 The useAuthenticate hook is used in order to enable the use to be authenticated. This is valid for both signup and login. Once inovoked, useAuthenticate will return an array made as follow:
 
 * the *authenticate* function, that is the function that will be used in order to dialogue with BE and execute the authentication function. Authenticate is an asyncronuos function, that waits an answer from the backend (so you are free to use with the Promise sintax rathen than async/await). The expected answer is a user object that must contain as required a *user ID* and a *token* because they will be essential for the login function described above (of course developer can add in the backend object whatever else property they think might be useful in FE)
@@ -96,7 +96,7 @@ const TestContext = props => {
 export default TestContext;
 ```
 
-### <a href="#select" style="pointer-events: none">useSelect</a>
+### useSelect
 This hook function is used in order to retrieve information from backend, without any data manipulation on DB. It can be considered as a SELECT operation of a SQL database. UseSelect accepts a variables object once initialiazed that can contain the following arguments:
 
 * **url**, it's the only mandatory field in case of GET request. This represents the url from BE where the API is exposed
@@ -135,7 +135,7 @@ const TestSelect = props => {
 export default TestSelect;
 ```
 
-### <a href="#update" style="pointer-events: none">useUpdate</a>
+### useUpdate
 This hook is used once we want to update data inside our database. It can be compared to the UPDATE function of a SQL database. UseUpdate, consists of two steps:
 * initialization, once we declare useUpate, without any function parameters, in order to get the update function to run and the UI helper (loading, error, clearError)
 * usage, once we use the update. The function is asyncronous and returns the updated record (if needed in the application)
@@ -180,7 +180,7 @@ const TestUpdate = () => {
 export default TestUpdate;
 ```
 
-### <a hrf="#delete" style="pointer-events: none">useDelete</a>
+### useDelete
 This hook let's the FE to delete one or more specific records. It's equal to the DELETE operation of a SQL database. UseDelete, consists of two steps:
 * initialization, once we declare useDelete, without any function parameters, in order to get the update function to run and the UI helper (loading, error, clearError)
 * usage, once we delete the existing record. The function is asyncronous and returns the deleted record (if needed in the application)
@@ -221,7 +221,7 @@ const TestDelete = () => {
 export default TestDelete;
 ```
 
-### <a href="#insert" style="pointer-events: none">useInsert</a>
+### useInsert
 This hook let's the developer creating a new record on the database. The scope of useInsert is similar to the INSERT operation in SQL. As the others, useInsert is characterized by two steps:
 * initialization, once we declare useInsert, without any function parameters, in order to get the update function to run and the UI helper (loading, error, clearError)
 * usage, once we insert the new record. The function is asyncronous and returns the new record (if needed in the application)
