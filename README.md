@@ -13,7 +13,7 @@ In order to use this library in the best way, it's essential to create a backend
     * [useDelete](#delete)
     * [useInsert](#insert)
 
-<h2><a name="crud-provider">The Crud Provider</a></h2>
+## <a name="crud-provider">The Crud Provider</a>
 This is the component that enables a Context within all the children components. In order to use the provider, you can apply the following boilerplate script:
 
 ```
@@ -33,8 +33,9 @@ Crud Provider needs to be passed the following properties:
 * **enablesToken**, this is a boolean that states if the login by token needs to be enabled or not
 * **tokenExpiresIn**, it states the token validity to be expressed in milliseconds and as a number, otherwise the developer will get an error. In order to correctly use this property, please keep in account to set enablesToke as true.
 
-<h2><a name="crud-context">The Crud Context</a></h2>
+## <a name="crud-context">The Crud Context</a>
 An important concept that is created under the hood is the Crud Context. This is the responsible of keeping the needed information related to the user that authenticates and provide the frontend with easy to use functions, such as login and logout. The Crud Context returns an object that contains in this release:
+
 * **userId**, it's the ID of the user that is retrieved from the backend part,
 * **token**, it's the token that the backend generates after the user logged in (or is auto-authenticated if the credentials where stored in the localStorage)
 * **userIsLogged**, it's a boolean that let's the user having a shortcut to understand if the user is currently logged or not. This might be useful for example if in our website we want to render particular sections or actions only to logged users
@@ -45,7 +46,7 @@ An important concept that is created under the hood is the Crud Context. This is
     * *keepDataOnStorage*, this is a boolean that will ask the Crud to keep information in memory for the current user or not
 * **logout**, it's the function that logs out the user and remove all his information from the localStorage, if memorized
 
-<h2><a name="hook">The hook functions</a></h2>
+## <a name="hook">The hook functions</a>
 In this section we are going to describe all the hook available in the package. Please, keep in account that, in order to correctly use this hooks, it's important that the backend rest api has been set correctly.
 
 ### <a name="authenticate">useAuthenticate</a>
