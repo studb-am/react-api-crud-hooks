@@ -33,10 +33,16 @@ Object.defineProperty(exports, "useInsert", {
     return _hookInsert.default;
   }
 });
+Object.defineProperty(exports, "useLazySelect", {
+  enumerable: true,
+  get: function get() {
+    return _hookSelect.useLazySelect;
+  }
+});
 Object.defineProperty(exports, "useSelect", {
   enumerable: true,
   get: function get() {
-    return _hookSelect.default;
+    return _hookSelect.useSelect;
   }
 });
 Object.defineProperty(exports, "useUpdate", {
@@ -48,7 +54,7 @@ Object.defineProperty(exports, "useUpdate", {
 
 var _hookAuthenticate = _interopRequireDefault(require("./hook-authenticate"));
 
-var _hookSelect = _interopRequireDefault(require("./hook-select"));
+var _hookSelect = require("./hook-select");
 
 var _hookUpdate = _interopRequireDefault(require("./hook-update"));
 

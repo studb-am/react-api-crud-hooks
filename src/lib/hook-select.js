@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import fetchFn from "./fetchFn";
 
-const useSelect = (variables) => {
+export const useSelect = (variables) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
@@ -35,8 +35,39 @@ const useSelect = (variables) => {
         }
     },[])
 
-    return { data, loading, error, clearError }
+    return { data, loading, error, clearError };
 
 }
 
-export default useSelect;
+export const useLazySelect = (variables) => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [data, setData] = useState(null);
+
+    const defaultVars = {
+        method: 'GET',
+        headers: {},
+        body: null
+    }
+
+    const clearError = () => {
+        setError(null);
+    }
+
+    const httpAbortCtrl = new AbortController();
+    const runQuery = useCallback(() => fetchFn({
+        ...defaultVars,
+        httpAbortCtrl,
+        setLoading,
+        setError,
+        ...variables
+    }).then(currData => setData(currData)),[]);
+
+    useEffect(() => {
+        return () => {
+            httpAbortCtrl.abort();
+        }
+    },[])
+
+    return [runQuery, { data, loading, error, clearError }];
+}

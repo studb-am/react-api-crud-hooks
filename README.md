@@ -9,6 +9,7 @@ In order to use this library in the best way, it's essential to create a backend
 * [The Hook functions](#the-hook-functions)
     * [useAuthenticate](#useAuthenticate)
     * [useSelect](#useSelect)
+    * [useLazySelect](#useLazySelect)
     * [useUpdate](#useUpdate)
     * [useDelete](#useDelete)
     * [useInsert](#useInsert)
@@ -16,7 +17,7 @@ In order to use this library in the best way, it's essential to create a backend
 ## The Crud Provider
 This is the component that enables a Context within all the children components. In order to use the provider, you can apply the following boilerplate script:
 
-```
+```jsx
     import React from 'react';
     import { CrudProvider } from 'react-api-crud-hooks';
 
@@ -60,9 +61,9 @@ The useAuthenticate hook is used in order to enable the use to be authenticated.
 
 Below an example of useAuthenticate usage:
 
-```
+```jsx
 import React, { useContext } from 'react';
-import { CrudContext, useAuthenticate } from '../lib';
+import { CrudContext, useAuthenticate } from 'react-api-crud-hooks';
 
 const TestContext = props => {
 
@@ -112,7 +113,7 @@ Once the hook is called, it returns an object with the following properties:
 
 A boilerplate script as an example on how to apply useSelect:
 
-```
+```jsx
 import React from 'react';
 import { useSelect } from 'react-api-crud-hooks';
 
@@ -135,6 +136,39 @@ const TestSelect = props => {
 export default TestSelect;
 ```
 
+### useLazySelect
+Both *useSelect* and *useLazySelect* are used in order to fetch data from a rest API, the difference is that useSelect is invoked only for render purpose, whereas useLazySelect is used after some trigger is enabled. The characteristics is almost the same, the only differnce is that:
+* once it's declared, procedure needs to destructure an array where the first element is the function to execute, the second object is the same object we get with useSelect
+* in order to invoke the query and fetch data we will use the runQuery function
+
+Example of how to use it can be seen in the example below:
+```jsx
+import React from 'react';
+import { useLazySelect } from 'react-api-crud-hooks';
+
+const TestSelect = props => {
+    const [runQuery, { data, loading, error }] = useLazySelect({
+        url: ..enterYourUrlApiHere...
+    })
+
+    if (loading) {
+        return <p>Loading...</p>
+    }
+
+    if (error) {
+        return <p>{error.message}</p>
+    }
+
+    return <div>
+        <button onClick={runQuery}>Fetch Data</button>
+        {data && <p>{JSON.stringify(data, undefined, 2)}</p>}
+    </div>
+    
+}
+
+export default TestSelect;
+```
+
 ### useUpdate
 This hook is used once we want to update data inside our database. It can be compared to the UPDATE function of a SQL database. UseUpdate, consists of two steps:
 * initialization, once we declare useUpate, without any function parameters, in order to get the update function to run and the UI helper (loading, error, clearError)
@@ -142,9 +176,9 @@ This hook is used once we want to update data inside our database. It can be com
 
 An example of the application of useUpdate in a dedicated component (assuming we have a table of place with two fields: title and description):
 
-```
+```jsx
 import React, { useContext } from 'react';
-import { CrudContext, useUpdate } from '../lib';
+import { CrudContext, useUpdate } from 'react-api-crud-hooks';
 
 const TestUpdate = () => {
 
@@ -187,9 +221,9 @@ This hook let's the FE to delete one or more specific records. It's equal to the
 
 An example of the usage:
 
-```
+```jsx
 import React, { useContext } from 'react';
-import { CrudContext, useDelete } from '../lib';
+import { CrudContext, useDelete } from 'react-api-crud-hooks';
 
 const TestDelete = () => {
 
@@ -228,9 +262,9 @@ This hook let's the developer creating a new record on the database. The scope o
 
 An example of usage:
 
-```
+```jsx
 import React, { useContext } from 'react';
-import { CrudContext, useInsert } from '../lib';
+import { CrudContext, useInsert } from 'react-api-crud-hooks';
 
 const TestInsert = () => {
 

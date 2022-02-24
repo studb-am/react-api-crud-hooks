@@ -1,11 +1,19 @@
 {
   "name": "react-api-crud-hooks",
-  "version": "0.0.4",
-  "keywords": ["react", "crud", "api","rest"],
+  "version": "0.0.5",
+  "keywords": [
+    "react",
+    "crud",
+    "api",
+    "rest"
+  ],
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [ "dist", "README.md" ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "start": "react-scripts start",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
@@ -16,5 +24,17 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
-}  
+}

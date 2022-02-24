@@ -1,7 +1,7 @@
-import Auth from './test-examples/Auth';
+import TestSelect from './test-examples/TestLazySelect';
 
 function App() {
-  return <Auth />
+  return <TestSelect />
 }
 
 export default App;
