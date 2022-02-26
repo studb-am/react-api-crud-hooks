@@ -57,7 +57,7 @@ const useSelect = variables => {
 
 exports.useSelect = useSelect;
 
-const useLazySelect = variables => {
+const useLazySelect = () => {
   const [loading, setLoading] = (0, _react.useState)(false);
   const [error, setError] = (0, _react.useState)(null);
   const [data, setData] = (0, _react.useState)(null);
@@ -72,7 +72,7 @@ const useLazySelect = variables => {
   };
 
   const httpAbortCtrl = new AbortController();
-  const runQuery = (0, _react.useCallback)(() => (0, _fetchFn.default)(_objectSpread(_objectSpread({}, defaultVars), {}, {
+  const runQuery = (0, _react.useCallback)(variables => (0, _fetchFn.default)(_objectSpread(_objectSpread({}, defaultVars), {}, {
     httpAbortCtrl,
     setLoading,
     setError

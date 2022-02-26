@@ -147,9 +147,7 @@ import React from 'react';
 import { useLazySelect } from 'react-api-crud-hooks';
 
 const TestSelect = props => {
-    const [runQuery, { data, loading, error }] = useLazySelect({
-        url: ..enterYourUrlApiHere...
-    })
+    const [runQuery, { data, loading, error }] = useLazySelect()
 
     if (loading) {
         return <p>Loading...</p>
@@ -160,7 +158,12 @@ const TestSelect = props => {
     }
 
     return <div>
-        <button onClick={runQuery}>Fetch Data</button>
+        <button onClick={() => runQuery({
+                url: ..enterYourUrlApiHere...
+            })}
+        >
+            Fetch Data
+        </button>
         {data && <p>{JSON.stringify(data, undefined, 2)}</p>}
     </div>
     

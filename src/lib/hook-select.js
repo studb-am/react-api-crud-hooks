@@ -39,7 +39,7 @@ export const useSelect = (variables) => {
 
 }
 
-export const useLazySelect = (variables) => {
+export const useLazySelect = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
@@ -55,7 +55,7 @@ export const useLazySelect = (variables) => {
     }
 
     const httpAbortCtrl = new AbortController();
-    const runQuery = useCallback(() => fetchFn({
+    const runQuery = useCallback((variables) => fetchFn({
         ...defaultVars,
         httpAbortCtrl,
         setLoading,

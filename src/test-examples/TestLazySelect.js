@@ -2,9 +2,7 @@ import React from 'react';
 import { useLazySelect } from '../lib';
 
 const TestSelect = props => {
-    const [runQuery, { data, loading, error }] = useLazySelect({
-        url: `${process.env.REACT_APP_HOST}/api/users`
-    })
+    const [runQuery, { data, loading, error }] = useLazySelect()
 
     if (loading) {
         return <p>Loading...</p>
@@ -15,10 +13,12 @@ const TestSelect = props => {
     }
 
     return <div>
-        <button onClick={runQuery}>Fetch Data</button>
+        <button onClick={() => runQuery({
+            url: 'https://locomovolt.com/api/backend/places/search-places'
+        })}>Fetch Data</button>
         {data && <p>{JSON.stringify(data, undefined, 2)}</p>}
     </div>
-    
+
 }
 
 export default TestSelect;
